@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@400;700&family=Righteous&display=swap');
+.app {
+  width: 380px;
+  margin: 0 auto;
+  background: #FB6B6B;
+}
+.app-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+  gap: 30px;
+}
+.logo {
+  width: 60px;
+  height: 60px;
+}
+.tittle {
+  font-size: 36px;
+  font-weight: 400;
+  font-family: 'Righteous';
+  color: white;
+}

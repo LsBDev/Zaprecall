@@ -1,12 +1,18 @@
 import '../css/App.css';
+import zapLogo from '../assets/logo.png'
+import Questions from './Questions';
+import Footer from './Footer';
 
 export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-       <h1>Hello World</h1>
+    <section className="app">
+      <header className="app-header">
+        <img className='logo' src={zapLogo} alt="logo" />
+       <h1 className='tittle'>ZapRecall</h1>
       </header>
-    </div>
+        <Questions />        
+        <Footer />
+    </section>
   );
 }
 
