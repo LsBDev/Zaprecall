@@ -14,6 +14,10 @@ const ContainerFooter = styled.footer `
   align-items: center;
   height: 70px;
   background: white;
+  position: fixed;
+  width: 380px;
+  bottom: 0;
+  z-index: 10;
   p {
     font-family: 'Recursive';
     font-weight: 400;

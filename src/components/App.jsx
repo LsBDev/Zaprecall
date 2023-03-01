@@ -10,8 +10,8 @@ export default function App() {
         <Logo src={zapLogo} alt="logo" />
        <Tittle>ZapRecall</Tittle>
       </HeaderApp>
-        <Questions />        
-        <Footer />
+      <Questions />        
+      <Footer />
     </ContainerApp>
   );
 }
