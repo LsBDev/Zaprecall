@@ -1,25 +1,33 @@
 import play from '../assets/seta_play.png'
+import turn from '../assets/seta_virar.png'
 import styled from 'styled-components'
+import { useState } from 'react'
+import Botao from './Botao'
 
-export default function Questions() {
-  const cards = [
-    { question: "O que é JSX?", answer: "Uma extensão da linguagem JavaScript" },
-    { question: "O React é __", answer: "Uma biblioteca JavaScript para construção de interfaces" },
-    { question: "Componentes devem iniciar com __", answer: "Letra maiúscula" },
-    { question: "Podemos colocar __ dentro do JSX", answer: "expressões" },
-    { question: "O ReactDOM nos ajuda __", answer: "Interagindo com a DOM para colocar componentes React na mesma" },
-    { question: "Usamos o npm para __", answer: "Gerenciar os pacotes necessários e suas dependências" },
-    { question: "Usamos props para __", answer: "Passar diferentes informações para componentes" },
-    { question: "Usamos estado (state) para __", answer: "Dizer para o React quais informações quando atualizadas devem renderizar a tela novamente" }
-  ]
+export default function Questions({cards}) {
+  const [question, setQuestion] = useState('Pergunta')
+  const [icon, setIcon] = useState(play)
+  
+  function turnOn(card) {
+    setQuestion(card.question)
+    setIcon(turn)
+  }
 
   return (
     <main>
       <ContainerQuestions >
         {cards.map((card, index) => (
-        <Question>
-          <p>Pergunta {index + 1}</p>
-          <img src={play} alt="play" />
+        <Question icon={icon}>
+          <Pergunta >
+            <p>{question} {index + 1}</p>
+            <img onClick={() => turnOn(card)} src={icon} alt="play" />
+          </Pergunta >
+          <Answer >
+            <Botao />
+            <Botao />
+            <Botao />
+          </Answer >
+          
         </Question>)
         )}      
       </ContainerQuestions>
@@ -27,7 +35,6 @@ export default function Questions() {
     
   )
 }
-
 const ContainerQuestions = styled.div`
   display: flex;
   flex-direction: column;
@@ -39,15 +46,16 @@ const ContainerQuestions = styled.div`
 `
 const Question = styled.div `
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   width: 300px;
-  height: 65px;
+  height:  ${(props) => props.icon !== play ? '130px' : '65px'};
   margin: 13px 0;
   padding: 0 15px;
   border-radius: 5px;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
-  background: white;
+  background: ${(props) => props.icon !== play ? '#FFFFD5;' : '#FFFFFF'};
   img {
     width: 20px;
     height: 20px;
@@ -57,4 +65,15 @@ const Question = styled.div `
     font-weight: 700;
     font-family: 'Recursive';
   }
+`
+const Pergunta = styled.div `
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`
+const Answer = styled.div `
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+
 `
