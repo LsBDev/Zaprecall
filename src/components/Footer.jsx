@@ -13,7 +13,7 @@ export default function Footer({cards, icon}) {
   }, 0)
 
  return (
-  <ContainerFooter>
+  <ContainerFooter data-test="footer">
     <p>{respondidas}/{cards.length} CONCLUÍDOS</p>
   </ContainerFooter>
  )

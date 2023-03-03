@@ -6,7 +6,7 @@ import yellow from '../assets/icone_quase.png'
 export default function Button({color, turnOn, index}) {
 
   return (
-    <Botao onClick={() => turnOn(index, color)} color={color}>
+    <Botao data-test="no-btn partial-btn zap-btn" onClick={() => turnOn(index, color)} color={color}>
       {color === red ? 'Não lembrei' : color === yellow ? 'Quase não lembrei' : 'Zap!'}
     </Botao>
   )

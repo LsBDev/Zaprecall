@@ -53,16 +53,16 @@ export default function Questions({cards, icon, setIcon}) {
     <main>
       <ContainerQuestions >
         {cards.map((card, index) => (
-        <CardQuestion key={index} icon={icon[index]}>
+        <CardQuestion data-test="flashcard" key={index} icon={icon[index]}>
           {/* usar logica para definir o componente? <Se isso COMPONENTE1 Se não COMPONENTE2> */}
-          <Pergunta >            
-            {(icon[index] === play && <p>{card.pergunta}</p>) ||
-            (icon[index] === red && <p>{card.pergunta}</p>) ||
-            (icon[index] === yellow && <p>{card.pergunta}</p>) ||
-            (icon[index] === green && <p>{card.pergunta}</p>) ||
-            (icon[index] === turn && <p>{card.question}</p>) || 
-            (icon[index] === 'none' && <p>{card.answer}</p>)}
-            <img onClick={() => turnOn(index)} src={icon[index]} alt="Ícone" />
+          <Pergunta >          
+            {(icon[index] === play && <p data-test="flashcard-text">{card.pergunta}</p>) ||
+            (icon[index] === red && <p data-test="flashcard-text">{card.pergunta}</p>) ||
+            (icon[index] === yellow && <p data-test="flashcard-text">{card.pergunta}</p>) ||
+            (icon[index] === green && <p data-test="flashcard-text">{card.pergunta}</p>) ||
+            (icon[index] === turn && <p data-test="flashcard-text">{card.question}</p>) || 
+            (icon[index] === 'none' && <p data-test="flashcard-text">{card.answer}</p>)}
+            <img data-test="play-btn turn-btn no-icon zap-icon partial-icon" onClick={() => turnOn(index)} src={icon[index]} alt="Ícone" />
           </Pergunta >
           <Answer key={index} icon={icon[index]}>
             <Button turnOn={turnOn} icon={icon} setIcon={setIcon} index={index} color={red}/>
