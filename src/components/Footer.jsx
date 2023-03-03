@@ -1,9 +1,20 @@
 import styled from 'styled-components'
+import red from '../assets/icone_erro.png'
+import yellow from '../assets/icone_quase.png'
+import green from '../assets/icone_certo.png'
 
-export default function Footer({cards}) {
+export default function Footer({cards, icon}) {
+  const respondidas = icon.reduce((acc, item) => {
+    if(item === red || item === yellow || item === green) {
+      return (acc + 1)
+    } else {
+      return acc
+    }
+  }, 0)
+
  return (
   <ContainerFooter>
-    <p>0/{cards.length} CONCLUÍDOS</p>
+    <p>{respondidas}/{cards.length} CONCLUÍDOS</p>
   </ContainerFooter>
  )
 }
