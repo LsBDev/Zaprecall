@@ -6,6 +6,7 @@ import play from '../assets/seta_play.png'
 import { useState } from 'react'
 
 export default function App() {
+  const cardState = {fechado: 1, pergunta: 2, resposta: 3, encerrado: 4}
   const cards = [
     { pergunta: "Pergunta 1", question: "O que é JSX?", answer: "Uma extensão da linguagem JavaScript" },
     { pergunta: 'Pergunta 2', question: "O React é __", answer: "Uma biblioteca JavaScript para construção de interfaces" },

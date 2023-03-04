@@ -5,8 +5,18 @@ import yellow from '../assets/icone_quase.png'
 import green from '../assets/icone_certo.png'
 import styled from 'styled-components'
 import Button from './Button'
+import QuestionClosed from './QuestionClosed'
+import QuestionOpen from './QuestionOpen'
+//import QuestionAnswer from './QuestionAnswer'
+//import QuestionFinished from './QuestionFinished'
+import {CardState} from '../enum.js'
+import {AnswerState} from '../enum.js'
+import { useState } from 'react'
 
 export default function Questions({cards, icon, setIcon}) {
+
+  const [quizzState, setQuizzState] = useState(cards.map(() => ({cardState: CardState.FECHADO, answerState: AnswerState.DEFAULT})))
+
   function turnOn(index, color = 'default') {
     console.log(color)
     switch(icon[index]) {
@@ -52,30 +62,21 @@ export default function Questions({cards, icon, setIcon}) {
   return (
     <main>
       <ContainerQuestions >
-        {cards.map((card, index) => (
-        <CardQuestion data-test="flashcard" key={index} icon={icon[index]}>
-          {/* usar logica para definir o componente? <Se isso COMPONENTE1 Se não COMPONENTE2> */}
-          <Pergunta >          
-            {(icon[index] === play && <p data-test="flashcard-text">{card.pergunta}</p>) ||
-            (icon[index] === red && <p data-test="flashcard-text">{card.pergunta}</p>) ||
-            (icon[index] === yellow && <p data-test="flashcard-text">{card.pergunta}</p>) ||
-            (icon[index] === green && <p data-test="flashcard-text">{card.pergunta}</p>) ||
-            (icon[index] === turn && <p data-test="flashcard-text">{card.question}</p>) || 
-            (icon[index] === 'none' && <p data-test="flashcard-text">{card.answer}</p>)}
-            <img data-test="play-btn turn-btn no-icon zap-icon partial-icon" onClick={() => turnOn(index)} src={icon[index]} alt="Ícone" />
-          </Pergunta >
-          <Answer key={index} icon={icon[index]}>
-            <Button turnOn={turnOn} icon={icon} setIcon={setIcon} index={index} color={red}/>
-            <Button turnOn={turnOn} icon={icon} setIcon={setIcon} index={index} color={yellow}/>
-            <Button turnOn={turnOn} icon={icon} setIcon={setIcon} index={index} color={green}/>
-          </Answer >
-        </CardQuestion>)
-        )}      
+        {cards.map((card, index) => {      
+            return (
+              (quizzState[index].cardState === CardState.FECHADO && <QuestionClosed key={index} id={index} setQuizzState={setQuizzState}/>) ||
+              (quizzState[index].cardState === CardState.ABERTO) && (<QuestionOpen key={index} question={cards.question}/>)
+             // (quizzState.cardState[index] === CardState.RESPOSTA && <QuestionAnswer answer={cards.answer} />) ||
+              //(quizzState.cardState[index] === CardState.ENCERRADO &&  <QuestionFinished />)
+            )
+          })
+        }      
       </ContainerQuestions>
     </main>
     
   )
 }
+
 const ContainerQuestions = styled.div`
   display: flex;
   flex-direction: column;
@@ -128,11 +129,11 @@ const CardQuestion = styled.div `
     )};
   }
 `
-const Pergunta = styled.div `
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-`
+// const Pergunta = styled.div `
+//   display: flex;
+//   justify-content: space-between;
+//   width: 100%;
+// `
 const Answer = styled.div `
   display: ${(props) => props.icon === 'none' ? 'flex' : 'none'};
   justify-content: space-around;
