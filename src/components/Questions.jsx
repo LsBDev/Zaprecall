@@ -10,7 +10,7 @@ export default function Questions({cards, quizzState, setQuizzState}) {
   
   return (
     <main>
-      <ContainerQuestions >
+      <ContainerQuestions data-test="flashcard">
         {cards.map((card, index) => {      
             return (
               (quizzState[index].cardState === CardState.FECHADO && <QuestionClosed key={index} id={index} setQuizzState={setQuizzState}/>) ||

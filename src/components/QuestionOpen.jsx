@@ -14,8 +14,8 @@ export default function QuestionOpen({question, id, setQuizzState}) {
   
     return(
         <Open>
-            <p>{question}</p>
-            <img  onClick={() => turnToAnswer(id)} src={turn} alt="turn" />
+            <p data-test="flashcard-text">{question}</p>
+            <img data-test="turn-btn" onClick={() => turnToAnswer(id)} src={turn} alt="turn" />
         </Open>
 
     )

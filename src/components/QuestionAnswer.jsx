@@ -5,7 +5,7 @@ import {AnswerState} from '../enum.js'
 export default function QuestionAnswer({ answer, id, setQuizzState}) {
     return (
         <Answer>
-            <p>{answer}</p>
+            <p data-test="flashcard-text">{answer}</p>
             <AnswerButton>
                 <Button id={id} answerState={AnswerState.ERRADO} setQuizzState={setQuizzState}/>
                 <Button id={id} answerState={AnswerState.QUASE} setQuizzState={setQuizzState}/>

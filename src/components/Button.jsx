@@ -11,7 +11,7 @@ export default function Button({id, setQuizzState, answerState}) {
 }
 
   return (
-    <Botao data-test="no-btn partial-btn zap-btn" answerState={answerState} onClick={() => turnToFinished(id, answerState)}>
+    <Botao data-test={answerState === AnswerState.ERRADO ? "no-btn" : answerState === AnswerState.QUASE ? "partial-btn" : "zap-btn"} answerState={answerState} onClick={() => turnToFinished(id, answerState)}>
       {answerState === AnswerState.ERRADO ? 'Não lembrei' : answerState === AnswerState.QUASE ? 'Quase não lembrei' : 'Zap!'}
     </Botao>
   )

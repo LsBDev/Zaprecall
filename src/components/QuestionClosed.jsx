@@ -13,8 +13,8 @@ export default function QuestionClosed({id, setQuizzState}) {
 
     return (
         <Closed>
-            <p>Pergunta {id+1} </p>
-            <img onClick={() => turnToOpen(id)} src={play} alt="play" />
+            <p data-test="flashcard-text">Pergunta {id+1} </p>
+            <img data-test="play-btn" onClick={() => turnToOpen(id)} src={play} alt="play" />
         </Closed>
     )
 }

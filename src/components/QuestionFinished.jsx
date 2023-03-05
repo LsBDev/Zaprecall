@@ -7,8 +7,8 @@ import {AnswerState} from '../enum.js'
 export default function QuestionFinished({id, answerState}) {
    return(
     <Finished answerState={answerState}>
-        <p>Pergunta {id+1}</p>
-        <img src={answerState === AnswerState.ERRADO ? redIcon : answerState === AnswerState.QUASE ? yellowIcon : greenIcon} alt="finalizado" />
+        <p data-test="flashcard-text">Pergunta {id+1}</p>
+        <img  data-test={answerState === AnswerState.ERRADO ? "no-icon" : answerState === AnswerState.QUASE ? "partial-icon" : "zap-icon"} src={answerState === AnswerState.ERRADO ? redIcon : answerState === AnswerState.QUASE ? yellowIcon : greenIcon} alt="finalizado" />
     </Finished>
    )
 }
