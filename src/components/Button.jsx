@@ -1,13 +1,18 @@
 import styled from "styled-components"
-import red from '../assets/icone_erro.png'
-import yellow from '../assets/icone_quase.png'
-// import green from '../assets/icone_certo.png'
+import {CardState, AnswerState} from '../enum.js'
 
-export default function Button({color, turnOn, index}) {
+export default function Button({id, setQuizzState, answerState}) {
+  function turnToFinished(id, answerState) {
+    setQuizzState((prev) => {
+      const newArray = [...prev]
+      newArray[id] = {cardState: CardState.ENCERRADO, answerState: answerState}
+      return newArray
+  })
+}
 
   return (
-    <Botao data-test="no-btn partial-btn zap-btn" onClick={() => turnOn(index, color)} color={color}>
-      {color === red ? 'Não lembrei' : color === yellow ? 'Quase não lembrei' : 'Zap!'}
+    <Botao data-test="no-btn partial-btn zap-btn" answerState={answerState} onClick={() => turnToFinished(id, answerState)}>
+      {answerState === AnswerState.ERRADO ? 'Não lembrei' : answerState === AnswerState.QUASE ? 'Quase não lembrei' : 'Zap!'}
     </Botao>
   )
 }
@@ -21,6 +26,6 @@ const Botao = styled.button `
   border-radius: 5px;
   border: none;
   color: #ffffff;
-  background: ${({color}) => color === red ? '#FF3030' : color === yellow ? '#FF922E' : '#2FBE34'};
+  background: ${({answerState}) => answerState === AnswerState.ERRADO ? '#FF3030' :  answerState === AnswerState.QUASE ? '#FF922E' : '#2FBE34'};
 
 `
