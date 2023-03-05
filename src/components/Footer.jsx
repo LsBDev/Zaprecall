@@ -1,20 +1,19 @@
 import styled from 'styled-components'
-import red from '../assets/icone_erro.png'
-import yellow from '../assets/icone_quase.png'
-import green from '../assets/icone_certo.png'
+import {CardState} from '../enum.js'
 
-export default function Footer({cards, icon}) {
-  const respondidas = icon.reduce((acc, item) => {
-    if(item === red || item === yellow || item === green) {
-      return (acc + 1)
+
+export default function Footer({quizzState}) {
+  const respondidas = quizzState.reduce((accumulator, item) => {
+    if(item.cardState === CardState.ENCERRADO) {
+      return (accumulator + 1)
     } else {
-      return acc
+      return accumulator
     }
   }, 0)
 
  return (
   <ContainerFooter data-test="footer">
-    <p>{respondidas}/{cards.length} CONCLUÍDOS</p>
+    <p>{respondidas}/{quizzState.length} CONCLUÍDOS</p>
   </ContainerFooter>
  )
 }

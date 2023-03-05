@@ -1,17 +1,16 @@
 import styled from "styled-components"
-// import red from '../assets/icone_erro.png'
-// import yellow from '../assets/icone_quase.png'
-// import green from '../assets/icone_certo.png'
+import Button from "./Button"
+import {AnswerState} from '../enum.js'
 
-export default function QuestionAnswer({ answer }) {
+export default function QuestionAnswer({ answer, id, setQuizzState}) {
     return (
         <Answer>
-            {/* <p>{answer}</p>
-            <AnswerButton key={index} icon={icon[index]}>
-                <Button icon={icon} setIcon={setIcon} index={index} color={red} />
-                <Button icon={icon} setIcon={setIcon} index={index} color={yellow} />
-                <Button icon={icon} setIcon={setIcon} index={index} color={green} />
-            </AnswerButton > */}
+            <p>{answer}</p>
+            <AnswerButton>
+                <Button id={id} answerState={AnswerState.ERRADO} setQuizzState={setQuizzState}/>
+                <Button id={id} answerState={AnswerState.QUASE} setQuizzState={setQuizzState}/>
+                <Button id={id} answerState={AnswerState.CORRETO} setQuizzState={setQuizzState}/>
+            </AnswerButton>
         </Answer>
 
 
@@ -35,6 +34,7 @@ const Answer = styled.div`
     height: 20px;
   }
   p {
+    width: 100%;
     font-size: 16px;
     font-weight: 700;
     font-family: 'Recursive';

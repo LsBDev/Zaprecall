@@ -1,13 +1,12 @@
 import play from '../assets/seta_play.png'
 import styled from 'styled-components'
-import {CardState} from '../enum.js'
-import {AnswerState} from '../enum.js'
+import {CardState, AnswerState} from '../enum.js'
 
 export default function QuestionClosed({id, setQuizzState}) {
     function turnToOpen(index) {
         setQuizzState((prev) => {
             const newArray = [...prev]
-            newArray[id] = {cardState: CardState.ABERTO, answerState: AnswerState.DEFAULT}
+            newArray[index] = {cardState: CardState.ABERTO, answerState: AnswerState.DEFAULT}
             return newArray
         })
     }
@@ -22,8 +21,7 @@ export default function QuestionClosed({id, setQuizzState}) {
 
 const Closed =styled.div `
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   width: 300px;
   height: 65px;

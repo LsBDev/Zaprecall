@@ -1,10 +1,21 @@
 import turn from '../assets/seta_virar.png'
 import styled from "styled-components"
-export default function QuestionOpen({question}) {
+import {CardState, AnswerState} from '../enum.js'
+
+export default function QuestionOpen({question, id, setQuizzState}) {
+  function turnToAnswer(index) {
+      setQuizzState((prev) => {
+          const newArray = [...prev]
+          newArray[index] = {cardState: CardState.RESPOSTA, answerState: AnswerState.DEFAULT}
+          return newArray
+      })
+  }
+
+  
     return(
         <Open>
             <p>{question}</p>
-            <img src={turn} alt="turn" />
+            <img  onClick={() => turnToAnswer(id)} src={turn} alt="turn" />
         </Open>
 
     )
@@ -12,9 +23,7 @@ export default function QuestionOpen({question}) {
 
 const Open = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: space-between;
   width: 300px;
   height:  130px;
   margin: 13px 0;
@@ -25,12 +34,13 @@ const Open = styled.div`
   img {
     width: 20px;
     height: 20px;
-    margin-top: 80px;
+    margin-top: 90px;
   }
   p {
     font-size: 16px;
     font-weight: 700;
     font-family: 'Recursive';
     color: #333333;
+    padding-top: 20px;
   }
 `
